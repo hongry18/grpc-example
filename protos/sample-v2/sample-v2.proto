@@ -1,8 +1,9 @@
 syntax = "proto3";
 
-package sample_v2;
+package v2.sample;
 
-option go_package = "github.com/hongry18/grpc-example/internal/protos/sample-v2";
+// option go_package = "github.com/hongry18/grpc-example/internal/protos/sample-v2";
+// option go_package = "./sample_v2";
 
 // 샘플
 service SampleV2Store {

@@ -2,11 +2,33 @@
 
 ## compile
 ```sh
-protoc -I=protos --go_out=server/internal/protos/sample-v1 --go_opt=paths=source_relative \
-	    --go-grpc_out=server/internal/protos/sample-v1 --go-grpc_opt=paths=source_relative \
-	    sample-v1.proto
+# server
+protoc -I=protos \
+	--go_out=server/internal/protos \
+	--go_opt=Msample-v1/sample-v1.proto=./sample-v1 \
+	--go-grpc_out=server/internal/protos \
+	--go-grpc_opt=Msample-v1/sample-v1.proto=./sample-v1 \
+	sample-v1/sample-v1.proto
 
-protoc -I=protos --go_out=server/internal/protos/sample-v2 --go_opt=paths=source_relative \
-	    --go-grpc_out=server/internal/protos/sample-v2 --go-grpc_opt=paths=source_relative \
-	    sample-v2.proto
+protoc -I=protos \
+	--go_out=server/internal/protos \
+	--go_opt=Msample-v2/sample-v2.proto=./sample-v2 \
+	--go-grpc_out=server/internal/protos \
+	--go-grpc_opt=Msample-v2/sample-v2.proto=./sample-v2 \
+	sample-v2/sample-v2.proto
+
+# client
+protoc -I=protos \
+	--go_out=client/internal/protos \
+	--go_opt=Msample-v1/sample-v1.proto=./sample-v1 \
+	--go-grpc_out=client/internal/protos \
+	--go-grpc_opt=Msample-v1/sample-v1.proto=./sample-v1 \
+	sample-v1/sample-v1.proto
+
+protoc -I=protos \
+	--go_out=client/internal/protos \
+	--go_opt=Msample-v2/sample-v2.proto=./sample-v2 \
+	--go-grpc_out=client/internal/protos \
+	--go-grpc_opt=Msample-v2/sample-v2.proto=./sample-v2 \
+	sample-v2/sample-v2.proto
 ```

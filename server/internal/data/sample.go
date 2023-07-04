@@ -1,10 +1,10 @@
 package data
 
 import (
-	samplePb "github.com/hongry18/grpc-example/internal/protos/sample"
+	samplePbV1 "github.com/hongry18/grpc-example/server/internal/protos/sample-v1"
 )
 
-var sampleData = []*samplePb.SampleResponse{
+var sampleData = []*samplePbV1.SampleV1Response{
 	{Id: 1, Message: "msg-1"},
 	{Id: 2, Message: "msg-2"},
 	{Id: 3, Message: "msg-3"},

@@ -7,8 +7,8 @@ import (
 
 	"google.golang.org/grpc"
 
-	sampleV1Pb "github.com/hongry18/grpc-example/internal/protos/sample-v1"
-	sampleV2Pb "github.com/hongry18/grpc-example/internal/protos/sample-v2"
+	sampleV1Pb "github.com/hongry18/grpc-example/server/internal/protos/sample-v1"
+	sampleV2Pb "github.com/hongry18/grpc-example/server/internal/protos/sample-v2"
 )
 
 const defaultPort = "9000"

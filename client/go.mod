@@ -1,4 +1,4 @@
-module github.com/hongry18/grpc-example/server
+module github.com/hongry18/grpc-example/client
 
 go 1.20
 
