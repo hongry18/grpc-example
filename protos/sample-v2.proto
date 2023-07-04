@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package sample_v2;
+
+option go_package = "github.com/hongry18/grpc-example/internal/protos/sample-v2";
+
+// 샘플
+service SampleV2Store {
+    rpc GetSampleV2 (SampleV2Request) returns (SampleV2Response);
+    rpc GetSampleAgainV2 (SampleV2Request) returns (SampleV2Response);
+}
+
+message SampleV2Request {
+    string name = 1;
+}
+
+message SampleV2Response {
+    int64 id = 1;
+    string message = 2;
+}
