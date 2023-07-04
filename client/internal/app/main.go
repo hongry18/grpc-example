@@ -5,15 +5,11 @@ import (
 	"log"
 	"time"
 
-	"google.golang.org/grpc"
-
 	sampleV1 "github.com/hongry18/grpc-example/client/internal/protos/sample-v1"
 	sampleV2 "github.com/hongry18/grpc-example/client/internal/protos/sample-v2"
 )
 
-func GetSampleV1(ctx context.Context, conn *grpc.ClientConn) {
-	c := sampleV1.NewSampleV1StoreClient(conn)
-
+func GetSampleV1(ctx context.Context, c sampleV1.SampleV1StoreClient) {
 	ctx, cancel := context.WithTimeout(ctx, time.Second*3)
 	defer cancel()
 
@@ -24,9 +20,7 @@ func GetSampleV1(ctx context.Context, conn *grpc.ClientConn) {
 	log.Printf("GetSampleV1: %s", r.GetMessage())
 }
 
-func GetSampleV2(ctx context.Context, conn *grpc.ClientConn) {
-	c := sampleV2.NewSampleV2StoreClient(conn)
-
+func GetSampleV2(ctx context.Context, c sampleV2.SampleV2StoreClient) {
 	ctx, cancel := context.WithTimeout(ctx, time.Second*3)
 	defer cancel()
 
