@@ -6,7 +6,7 @@ package v2.sample;
 // option go_package = "./sample_v2";
 
 // 샘플
-service SampleV2Store {
+service SampleV2 {
     rpc GetSampleV2 (SampleV2Request) returns (SampleV2Response);
     rpc GetSampleAgainV2 (SampleV2Request) returns (SampleV2Response);
 }

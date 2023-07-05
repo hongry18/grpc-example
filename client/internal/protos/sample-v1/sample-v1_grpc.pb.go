@@ -19,126 +19,126 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SampleV1Store_GetSampleV1_FullMethodName      = "/v1.sample.SampleV1Store/GetSampleV1"
-	SampleV1Store_GetSampleAgainV1_FullMethodName = "/v1.sample.SampleV1Store/GetSampleAgainV1"
+	SampleV1_GetSampleV1_FullMethodName      = "/v1.sample.SampleV1/GetSampleV1"
+	SampleV1_GetSampleAgainV1_FullMethodName = "/v1.sample.SampleV1/GetSampleAgainV1"
 )
 
-// SampleV1StoreClient is the client API for SampleV1Store service.
+// SampleV1Client is the client API for SampleV1 service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SampleV1StoreClient interface {
+type SampleV1Client interface {
 	GetSampleV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error)
 	GetSampleAgainV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error)
 }
 
-type sampleV1StoreClient struct {
+type sampleV1Client struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSampleV1StoreClient(cc grpc.ClientConnInterface) SampleV1StoreClient {
-	return &sampleV1StoreClient{cc}
+func NewSampleV1Client(cc grpc.ClientConnInterface) SampleV1Client {
+	return &sampleV1Client{cc}
 }
 
-func (c *sampleV1StoreClient) GetSampleV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error) {
+func (c *sampleV1Client) GetSampleV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error) {
 	out := new(SampleV1Response)
-	err := c.cc.Invoke(ctx, SampleV1Store_GetSampleV1_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, SampleV1_GetSampleV1_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sampleV1StoreClient) GetSampleAgainV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error) {
+func (c *sampleV1Client) GetSampleAgainV1(ctx context.Context, in *SampleV1Request, opts ...grpc.CallOption) (*SampleV1Response, error) {
 	out := new(SampleV1Response)
-	err := c.cc.Invoke(ctx, SampleV1Store_GetSampleAgainV1_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, SampleV1_GetSampleAgainV1_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SampleV1StoreServer is the server API for SampleV1Store service.
-// All implementations must embed UnimplementedSampleV1StoreServer
+// SampleV1Server is the server API for SampleV1 service.
+// All implementations must embed UnimplementedSampleV1Server
 // for forward compatibility
-type SampleV1StoreServer interface {
+type SampleV1Server interface {
 	GetSampleV1(context.Context, *SampleV1Request) (*SampleV1Response, error)
 	GetSampleAgainV1(context.Context, *SampleV1Request) (*SampleV1Response, error)
-	mustEmbedUnimplementedSampleV1StoreServer()
+	mustEmbedUnimplementedSampleV1Server()
 }
 
-// UnimplementedSampleV1StoreServer must be embedded to have forward compatible implementations.
-type UnimplementedSampleV1StoreServer struct {
+// UnimplementedSampleV1Server must be embedded to have forward compatible implementations.
+type UnimplementedSampleV1Server struct {
 }
 
-func (UnimplementedSampleV1StoreServer) GetSampleV1(context.Context, *SampleV1Request) (*SampleV1Response, error) {
+func (UnimplementedSampleV1Server) GetSampleV1(context.Context, *SampleV1Request) (*SampleV1Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSampleV1 not implemented")
 }
-func (UnimplementedSampleV1StoreServer) GetSampleAgainV1(context.Context, *SampleV1Request) (*SampleV1Response, error) {
+func (UnimplementedSampleV1Server) GetSampleAgainV1(context.Context, *SampleV1Request) (*SampleV1Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSampleAgainV1 not implemented")
 }
-func (UnimplementedSampleV1StoreServer) mustEmbedUnimplementedSampleV1StoreServer() {}
+func (UnimplementedSampleV1Server) mustEmbedUnimplementedSampleV1Server() {}
 
-// UnsafeSampleV1StoreServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SampleV1StoreServer will
+// UnsafeSampleV1Server may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SampleV1Server will
 // result in compilation errors.
-type UnsafeSampleV1StoreServer interface {
-	mustEmbedUnimplementedSampleV1StoreServer()
+type UnsafeSampleV1Server interface {
+	mustEmbedUnimplementedSampleV1Server()
 }
 
-func RegisterSampleV1StoreServer(s grpc.ServiceRegistrar, srv SampleV1StoreServer) {
-	s.RegisterService(&SampleV1Store_ServiceDesc, srv)
+func RegisterSampleV1Server(s grpc.ServiceRegistrar, srv SampleV1Server) {
+	s.RegisterService(&SampleV1_ServiceDesc, srv)
 }
 
-func _SampleV1Store_GetSampleV1_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SampleV1_GetSampleV1_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SampleV1Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SampleV1StoreServer).GetSampleV1(ctx, in)
+		return srv.(SampleV1Server).GetSampleV1(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SampleV1Store_GetSampleV1_FullMethodName,
+		FullMethod: SampleV1_GetSampleV1_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SampleV1StoreServer).GetSampleV1(ctx, req.(*SampleV1Request))
+		return srv.(SampleV1Server).GetSampleV1(ctx, req.(*SampleV1Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SampleV1Store_GetSampleAgainV1_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SampleV1_GetSampleAgainV1_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SampleV1Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SampleV1StoreServer).GetSampleAgainV1(ctx, in)
+		return srv.(SampleV1Server).GetSampleAgainV1(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SampleV1Store_GetSampleAgainV1_FullMethodName,
+		FullMethod: SampleV1_GetSampleAgainV1_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SampleV1StoreServer).GetSampleAgainV1(ctx, req.(*SampleV1Request))
+		return srv.(SampleV1Server).GetSampleAgainV1(ctx, req.(*SampleV1Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SampleV1Store_ServiceDesc is the grpc.ServiceDesc for SampleV1Store service.
+// SampleV1_ServiceDesc is the grpc.ServiceDesc for SampleV1 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SampleV1Store_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "v1.sample.SampleV1Store",
-	HandlerType: (*SampleV1StoreServer)(nil),
+var SampleV1_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "v1.sample.SampleV1",
+	HandlerType: (*SampleV1Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetSampleV1",
-			Handler:    _SampleV1Store_GetSampleV1_Handler,
+			Handler:    _SampleV1_GetSampleV1_Handler,
 		},
 		{
 			MethodName: "GetSampleAgainV1",
-			Handler:    _SampleV1Store_GetSampleAgainV1_Handler,
+			Handler:    _SampleV1_GetSampleAgainV1_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

@@ -2,7 +2,7 @@
 // versions:
 // - protoc-gen-go-grpc v1.3.0
 // - protoc             v4.23.3
-// source: sample-v2.proto
+// source: sample-v2/sample-v2.proto
 
 package sample_v2
 
@@ -19,128 +19,128 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	SampleV2Store_GetSampleV2_FullMethodName      = "/sample_v2.SampleV2Store/GetSampleV2"
-	SampleV2Store_GetSampleAgainV2_FullMethodName = "/sample_v2.SampleV2Store/GetSampleAgainV2"
+	SampleV2_GetSampleV2_FullMethodName      = "/v2.sample.SampleV2/GetSampleV2"
+	SampleV2_GetSampleAgainV2_FullMethodName = "/v2.sample.SampleV2/GetSampleAgainV2"
 )
 
-// SampleV2StoreClient is the client API for SampleV2Store service.
+// SampleV2Client is the client API for SampleV2 service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type SampleV2StoreClient interface {
+type SampleV2Client interface {
 	GetSampleV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error)
 	GetSampleAgainV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error)
 }
 
-type sampleV2StoreClient struct {
+type sampleV2Client struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewSampleV2StoreClient(cc grpc.ClientConnInterface) SampleV2StoreClient {
-	return &sampleV2StoreClient{cc}
+func NewSampleV2Client(cc grpc.ClientConnInterface) SampleV2Client {
+	return &sampleV2Client{cc}
 }
 
-func (c *sampleV2StoreClient) GetSampleV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error) {
+func (c *sampleV2Client) GetSampleV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error) {
 	out := new(SampleV2Response)
-	err := c.cc.Invoke(ctx, SampleV2Store_GetSampleV2_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, SampleV2_GetSampleV2_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *sampleV2StoreClient) GetSampleAgainV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error) {
+func (c *sampleV2Client) GetSampleAgainV2(ctx context.Context, in *SampleV2Request, opts ...grpc.CallOption) (*SampleV2Response, error) {
 	out := new(SampleV2Response)
-	err := c.cc.Invoke(ctx, SampleV2Store_GetSampleAgainV2_FullMethodName, in, out, opts...)
+	err := c.cc.Invoke(ctx, SampleV2_GetSampleAgainV2_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// SampleV2StoreServer is the server API for SampleV2Store service.
-// All implementations must embed UnimplementedSampleV2StoreServer
+// SampleV2Server is the server API for SampleV2 service.
+// All implementations must embed UnimplementedSampleV2Server
 // for forward compatibility
-type SampleV2StoreServer interface {
+type SampleV2Server interface {
 	GetSampleV2(context.Context, *SampleV2Request) (*SampleV2Response, error)
 	GetSampleAgainV2(context.Context, *SampleV2Request) (*SampleV2Response, error)
-	mustEmbedUnimplementedSampleV2StoreServer()
+	mustEmbedUnimplementedSampleV2Server()
 }
 
-// UnimplementedSampleV2StoreServer must be embedded to have forward compatible implementations.
-type UnimplementedSampleV2StoreServer struct {
+// UnimplementedSampleV2Server must be embedded to have forward compatible implementations.
+type UnimplementedSampleV2Server struct {
 }
 
-func (UnimplementedSampleV2StoreServer) GetSampleV2(context.Context, *SampleV2Request) (*SampleV2Response, error) {
+func (UnimplementedSampleV2Server) GetSampleV2(context.Context, *SampleV2Request) (*SampleV2Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSampleV2 not implemented")
 }
-func (UnimplementedSampleV2StoreServer) GetSampleAgainV2(context.Context, *SampleV2Request) (*SampleV2Response, error) {
+func (UnimplementedSampleV2Server) GetSampleAgainV2(context.Context, *SampleV2Request) (*SampleV2Response, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSampleAgainV2 not implemented")
 }
-func (UnimplementedSampleV2StoreServer) mustEmbedUnimplementedSampleV2StoreServer() {}
+func (UnimplementedSampleV2Server) mustEmbedUnimplementedSampleV2Server() {}
 
-// UnsafeSampleV2StoreServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to SampleV2StoreServer will
+// UnsafeSampleV2Server may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to SampleV2Server will
 // result in compilation errors.
-type UnsafeSampleV2StoreServer interface {
-	mustEmbedUnimplementedSampleV2StoreServer()
+type UnsafeSampleV2Server interface {
+	mustEmbedUnimplementedSampleV2Server()
 }
 
-func RegisterSampleV2StoreServer(s grpc.ServiceRegistrar, srv SampleV2StoreServer) {
-	s.RegisterService(&SampleV2Store_ServiceDesc, srv)
+func RegisterSampleV2Server(s grpc.ServiceRegistrar, srv SampleV2Server) {
+	s.RegisterService(&SampleV2_ServiceDesc, srv)
 }
 
-func _SampleV2Store_GetSampleV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SampleV2_GetSampleV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SampleV2Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SampleV2StoreServer).GetSampleV2(ctx, in)
+		return srv.(SampleV2Server).GetSampleV2(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SampleV2Store_GetSampleV2_FullMethodName,
+		FullMethod: SampleV2_GetSampleV2_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SampleV2StoreServer).GetSampleV2(ctx, req.(*SampleV2Request))
+		return srv.(SampleV2Server).GetSampleV2(ctx, req.(*SampleV2Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SampleV2Store_GetSampleAgainV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _SampleV2_GetSampleAgainV2_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(SampleV2Request)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(SampleV2StoreServer).GetSampleAgainV2(ctx, in)
+		return srv.(SampleV2Server).GetSampleAgainV2(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: SampleV2Store_GetSampleAgainV2_FullMethodName,
+		FullMethod: SampleV2_GetSampleAgainV2_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SampleV2StoreServer).GetSampleAgainV2(ctx, req.(*SampleV2Request))
+		return srv.(SampleV2Server).GetSampleAgainV2(ctx, req.(*SampleV2Request))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// SampleV2Store_ServiceDesc is the grpc.ServiceDesc for SampleV2Store service.
+// SampleV2_ServiceDesc is the grpc.ServiceDesc for SampleV2 service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var SampleV2Store_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sample_v2.SampleV2Store",
-	HandlerType: (*SampleV2StoreServer)(nil),
+var SampleV2_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "v2.sample.SampleV2",
+	HandlerType: (*SampleV2Server)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "GetSampleV2",
-			Handler:    _SampleV2Store_GetSampleV2_Handler,
+			Handler:    _SampleV2_GetSampleV2_Handler,
 		},
 		{
 			MethodName: "GetSampleAgainV2",
-			Handler:    _SampleV2Store_GetSampleAgainV2_Handler,
+			Handler:    _SampleV2_GetSampleAgainV2_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
-	Metadata: "sample-v2.proto",
+	Metadata: "sample-v2/sample-v2.proto",
 }
