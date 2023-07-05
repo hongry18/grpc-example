@@ -26,8 +26,6 @@ func (s serverV1) GetSampleAgainV1(ctx context.Context, request *sampleV1Pb.Samp
 	return &sampleV1Pb.SampleV1Response{Id: 1, Message: fmt.Sprintf("samplev1, name is %s", request.GetName())}, nil
 }
 
-func (s serverV1) mustEmbedUnimplementedSampleV1Server() {}
-
 type serverV2 struct {
 	sampleV2Pb.UnimplementedSampleV2Server
 }
@@ -39,8 +37,6 @@ func (s serverV2) GetSampleV2(ctx context.Context, request *sampleV2Pb.SampleV2R
 func (s serverV2) GetSampleAgainV2(ctx context.Context, request *sampleV2Pb.SampleV2Request) (*sampleV2Pb.SampleV2Response, error) {
 	return &sampleV2Pb.SampleV2Response{Id: 1, Message: fmt.Sprintf("samplev2, name is %s", request.GetName())}, nil
 }
-
-func (s serverV2) mustEmbedUnimplementedSampleV2Server() {}
 
 func StartServer(port string) {
 	if port == "" {
