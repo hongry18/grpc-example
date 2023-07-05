@@ -18,25 +18,29 @@ type serverV1 struct {
 	sampleV1Pb.SampleV1Server
 }
 
-func (s *serverV1) GetSampleV1(ctx context.Context, request *sampleV1Pb.SampleV1Request) (*sampleV1Pb.SampleV1Response, error) {
+func (s serverV1) GetSampleV1(ctx context.Context, request *sampleV1Pb.SampleV1Request) (*sampleV1Pb.SampleV1Response, error) {
 	return &sampleV1Pb.SampleV1Response{Id: 1, Message: fmt.Sprintf("samplev1, name is %s", request.GetName())}, nil
 }
 
-func (s *serverV1) GetSampleAgainV1(ctx context.Context, request *sampleV1Pb.SampleV1Request) (*sampleV1Pb.SampleV1Response, error) {
+func (s serverV1) GetSampleAgainV1(ctx context.Context, request *sampleV1Pb.SampleV1Request) (*sampleV1Pb.SampleV1Response, error) {
 	return &sampleV1Pb.SampleV1Response{Id: 1, Message: fmt.Sprintf("samplev1, name is %s", request.GetName())}, nil
 }
+
+func (s serverV1) mustEmbedUnimplementedSampleV1Server() {}
 
 type serverV2 struct {
-	sampleV2Pb.SampleV2Server
+	sampleV2Pb.UnimplementedSampleV2Server
 }
 
-func (s *serverV2) GetSampleV2(ctx context.Context, request *sampleV2Pb.SampleV2Request) (*sampleV2Pb.SampleV2Response, error) {
+func (s serverV2) GetSampleV2(ctx context.Context, request *sampleV2Pb.SampleV2Request) (*sampleV2Pb.SampleV2Response, error) {
 	return &sampleV2Pb.SampleV2Response{Id: 1, Message: fmt.Sprintf("samplev2, name is %s", request.GetName())}, nil
 }
 
-func (s *serverV2) GetSampleAgainV2(ctx context.Context, request *sampleV2Pb.SampleV2Request) (*sampleV2Pb.SampleV2Response, error) {
+func (s serverV2) GetSampleAgainV2(ctx context.Context, request *sampleV2Pb.SampleV2Request) (*sampleV2Pb.SampleV2Response, error) {
 	return &sampleV2Pb.SampleV2Response{Id: 1, Message: fmt.Sprintf("samplev2, name is %s", request.GetName())}, nil
 }
+
+func (s serverV2) mustEmbedUnimplementedSampleV2Server() {}
 
 func StartServer(port string) {
 	if port == "" {
